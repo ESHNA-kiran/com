@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="contact.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">TechVision</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle">🌙</button>
+    </nav>
+
+    <!-- Contact Section -->
+    <div class="contact" id="contact">
+        <h1>Contact Us</h1>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+        <!-- Social Media Links -->
+        <div class="social-media">
+            <a href="https://facebook.com" target="_blank">
+                <img src="facebook-icon.png" alt="Facebook">
+            </a>
+            <a href="https://twitter.com" target="_blank">
+                <img src="twitter-icon.png" alt="Twitter">
+            </a>
+            <a href="https://linkedin.com" target="_blank">
+                <img src="linkedin-icon.png" alt="LinkedIn">
+            </a>
+        </div>
+
+        <!-- Embedded Map (Optional) -->
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8091671459987!2d-122.42501308555148!3d37.77492977975935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085815bfcf558b7%3A0x87f3b31c225cb6d4!2sSan%20Francisco%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1615540426745!5m2!1sen!2sin" 
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <h2>What Our Clients Say</h2>
+        <div class="testimonial-slider">
+            <div class="testimonial">
+                <p>"TechVision transformed our business with a sleek website!"</p>
+                <span>- Alex, CEO of InnovateX</span>
+            </div>
+            <div class="testimonial">
+                <p>"Exceptional design and smooth user experience!"</p>
+                <span>- Sarah, Marketing Head</span>
+            </div>
+            <div class="testimonial">
+                <p>"Their AI solutions boosted our efficiency!"</p>
+                <span>- James, CTO of StartUpLab</span>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // GSAP Animations for Hero Section (if any)
+        gsap.from(".hero-content h1", { opacity: 0, y: 20, duration: 1, ease: "power3.out" });
+        gsap.from(".hero-content h2", { opacity: 0, y: 20, duration: 1, delay: 0.5, ease: "power3.out" });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            themeToggle.textContent = document.body.classList.contains('light-mode') ? '🌙' : '🌞';
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Testimonial Auto-Slider
+        let currentIndex = 0;
+        const testimonials = document.querySelectorAll('.testimonial');
+        setInterval(() => {
+            testimonials.forEach(t => t.style.display = 'none');
+            testimonials[currentIndex].style.display = 'block';
+            currentIndex = (currentIndex + 1) % testimonials.length;
+        }, 3000);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Software Agency</title>
+    <link rel="stylesheet" href="service.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">TechVision</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle">🌙</button>
+    </nav>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h1>Our Services</h1>
+        <div class="service-cards">
+            <!-- Service 1: Web Development -->
+            <div class="service-card" onclick="openModal('webDev')">
+                <h2>Web Development</h2>
+                <p>Custom websites tailored to your needs</p>
+            </div>
+            
+            <!-- Service 2: Mobile Apps -->
+            <div class="service-card" onclick="openModal('mobileApps')">
+                <h2>Mobile Apps</h2>
+                <p>Android & iOS app development</p>
+            </div>
+
+            <!-- Service 3: AI Solutions -->
+            <div class="service-card" onclick="openModal('aiSolutions')">
+                <h2>AI Solutions</h2>
+                <p>Implementing cutting-edge AI solutions</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section id="testimonials" class="testimonials">
+        <h2>What Our Clients Say</h2>
+        <div class="testimonial-slider">
+            <div class="testimonial">
+                <p>"TechVision transformed our business with a sleek website!"</p>
+                <span>- Alex, CEO of InnovateX</span>
+            </div>
+            <div class="testimonial">
+                <p>"Exceptional design and smooth user experience!"</p>
+                <span>- Sarah, Marketing Head</span>
+            </div>
+            <div class="testimonial">
+                <p>"Their AI solutions boosted our efficiency!"</p>
+                <span>- James, CTO of StartUpLab</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Popups -->
+    <div class="modal" id="webDevModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('webDev')">&times;</span>
+            <h2>Web Development</h2>
+            <p>We build custom websites using the latest technologies like HTML, CSS, JavaScript, and frameworks such as React and Angular.</p>
+        </div>
+    </div>
+
+    <div class="modal" id="mobileAppsModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('mobileApps')">&times;</span>
+            <h2>Mobile App Development</h2>
+            <p>We specialize in building mobile apps for both Android and iOS platforms, ensuring a seamless user experience.</p>
+        </div>
+    </div>
+
+    <div class="modal" id="aiSolutionsModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('aiSolutions')">&times;</span>
+            <h2>AI Solutions</h2>
+            <p>We provide AI-driven solutions to automate and optimize your business processes, improving efficiency and decision-making.</p>
+        </div>
+    </div>
+
+    <script>
+        // GSAP Animations for Service Cards and Testimonial Section
+        gsap.from(".service-card", { opacity: 0, y: 20, stagger: 0.3, duration: 1, ease: "power3.out" });
+        gsap.from(".testimonial", { opacity: 0, y: 20, stagger: 0.5, duration: 1, ease: "power3.out" });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            themeToggle.textContent = body.classList.contains('light-mode') ? '🌙' : '🌞';
+        });
+
+        // Modal open and close functionality
+        function openModal(service) {
+            document.getElementById(service + 'Modal').style.display = 'block';
+        }
+
+        function closeModal(service) {
+            document.getElementById(service + 'Modal').style.display = 'none';
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Testimonial Auto-Slider
+        let currentIndex = 0;
+        const testimonials = document.querySelectorAll('.testimonial');
+        setInterval(() => {
+            testimonials.forEach(t => t.style.display = 'none');
+            testimonials[currentIndex].style.display = 'block';
+            currentIndex = (currentIndex + 1) % testimonials.length;
+        }, 3000);
+    </script>
+
+</body>
+</html>

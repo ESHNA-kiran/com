@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <link rel="stylesheet" href="project.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">TechVision</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle">🌙</button>
+    </nav>
+
+    <!-- Projects Section -->
+    <div class="projects" id="projects">
+        <h1>Our Completed Projects</h1>
+        <div class="project-cards">
+            <!-- Project 1 -->
+            <div class="project-card" data-project="1">
+                <img src="project1.png" alt="Project 1 ">
+                <h2>Project One</h2>
+                <p>A web application that streamlines business operations.</p>
+            </div>
+            <!-- Project 2 -->
+            <div class="project-card" data-project="2">
+                <img src="project2.png" alt="Project 2">
+                <h2>Project Two</h2>
+                <p>Mobile app for efficient task management and collaboration.</p>
+            </div>
+            <!-- Project 3 -->
+            <div class="project-card" data-project="3">
+                <img src="project3.jpg" alt="Project 3">
+                <h2>Project Three</h2>
+                <p>An AI-based platform for data analytics and insights.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Details Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="projectTitle">Project Title</h2>
+            <p id="projectDetails">Project details go here...</p>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <h2>What Our Clients Say</h2>
+        <div class="testimonial-slider">
+            <div class="testimonial">
+                <p>"TechVision transformed our business with a sleek website!"</p>
+                <span>- Alex, CEO of InnovateX</span>
+            </div>
+            <div class="testimonial">
+                <p>"Exceptional design and smooth user experience!"</p>
+                <span>- Sarah, Marketing Head</span>
+            </div>
+            <div class="testimonial">
+                <p>"Their AI solutions boosted our efficiency!"</p>
+                <span>- James, CTO of StartUpLab</span>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // GSAP Animations for Project Cards
+        gsap.from(".project-card", {
+            opacity: 0,
+            y: 20,
+            duration: 1.2,
+            stagger: 0.3,
+            ease: "power3.out"
+        });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            themeToggle.textContent = document.body.classList.contains('light-mode') ? '🌙' : '🌞';
+        });
+
+        // Smooth Scroll for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Project Card Click Event
+        const projectCards = document.querySelectorAll('.project-card');
+        const projectTitle = document.getElementById('projectTitle');
+        const projectDetails = document.getElementById('projectDetails');
+        const modal = document.getElementById('projectModal');
+        const closeModal = document.querySelector('.close');
+
+        const projectData = {
+            1: {
+                title: "Project One",
+                details: "Project One is a web application that streamlines business operations. It offers real-time data syncing, a user-friendly dashboard, and powerful analytics features that help businesses grow efficiently."
+            },
+            2: {
+                title: "Project Two",
+                details: "Project Two is a mobile app designed for efficient task management and team collaboration. Features include to-do lists, real-time chat, and push notifications to keep the team on track."
+            },
+            3: {
+                title: "Project Three",
+                details: "Project Three is an AI-based platform that uses machine learning to provide insights from big data. It helps businesses in decision-making by analyzing data trends and predicting future outcomes."
+            }
+        };
+
+        projectCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const projectId = card.getAttribute('data-project');
+                const project = projectData[projectId];
+
+                // Update modal with project details
+                projectTitle.textContent = project.title;
+                projectDetails.textContent = project.details;
+
+                // Display the modal
+                modal.style.display = 'block';
+            });
+        });
+
+        // Close Modal
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Close Modal When Clicking Outside
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Testimonial Auto-Slider
+        let currentIndex = 0;
+        const testimonials = document.querySelectorAll('.testimonial');
+        setInterval(() => {
+            testimonials.forEach(t => t.style.display = 'none');
+            testimonials[currentIndex].style.display = 'block';
+            currentIndex = (currentIndex + 1) % testimonials.length;
+        }, 3000);
+    </script>
+</body>
+</html>

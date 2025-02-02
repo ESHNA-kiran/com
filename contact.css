@@ -1,0 +1,151 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(180deg, #2a0a53, #6a0dad);
+    color: white;
+    text-align: center;
+    transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* Light Mode */
+body.light-mode {
+    background: #f5f4f4;
+    color: #111010;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background: rgba(82, 82, 82, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 80px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: rgb(10, 10, 10);
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #ff4b5c;
+}
+
+/* Theme Toggle */
+#theme-toggle {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Contact Section */
+.contact {
+    padding: 50px;
+}
+
+.contact h1 {
+    color: #000;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+/* Contact Form */
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.contact-form input, .contact-form textarea {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-form button {
+    padding: 12px;
+    font-size: 18px;
+    background-color: #6a0dad;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background-color: #541b8a;
+}
+
+/* Social Media Links */
+.social-media {
+    margin-top: 30px;
+}
+
+.social-media a {
+    margin: 0 15px;
+    display: inline-block;
+}
+
+.social-media img {
+    width: 30px;
+    height: 30px;
+}
+
+/* Embedded Map */
+.map-container {
+    margin-top: 30px;
+}
+
+/* Testimonials Section */
+.testimonials {
+    padding: 50px;
+    background: rgba(63, 62, 62, 0.1);
+    border-radius: 10px;
+    margin: 50px auto;
+    max-width: 600px;
+}
+
+.testimonials h2 {
+    color: #050505;
+    margin-bottom: 20px;
+}
+
+.testimonial {
+    display: none;
+    font-style: italic;
+    font-size: 18px;
+    color: #050505;
+}
+
+.testimonial span {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #050505;
+}
+
+/* Light Mode */
+body.light-mode .navbar {
+    background: rgba(82, 82, 82, 0.1);
+}
+
+body.light-mode .contact-form button {
+    background-color: #6a0dad;
+    color: white;
+}
